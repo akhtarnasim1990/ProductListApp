@@ -15,8 +15,8 @@ To run this project locally, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/product-list-app.git
-   cd product-list-app
+   git clone git@github.com:akhtarnasim1990/ProductListApp.git
+   cd ProductListApp
    ```
 
 2. **Install the dependencies:**
@@ -39,7 +39,7 @@ To run this project locally, follow these steps:
 
 ### React Components
 
-- **`App.tsx`:** The main component of the application.
+- **`Home.tsx`:** The main component of the application.
   - **State Management:**
     - `products`: Stores the list of products fetched from the API.
     - `searchKey`: Stores the user's search input.
