@@ -1,46 +1,96 @@
-# Getting Started with Create React App
+# Product List Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple React application that displays a list of products with search functionality. It also provides a user-friendly experience by including an image loading spinner and handling image load errors.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Product List Display:** Renders a list of products fetched from a mock API.
+- **Search Functionality:** Allows users to search for products by name. The search is optimized with a debounced input, ensuring that the search is performed after the user stops typing.
+- **Image Loading State:** Displays a loading spinner while images are being fetched and handles errors by showing an alternative message if the image fails to load.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To run this project locally, follow these steps:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. **Clone the repository:**
 
-### `npm test`
+   ```bash
+   git clone https://github.com/your-username/product-list-app.git
+   cd product-list-app
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install the dependencies:**
 
-### `npm run build`
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Start the development server:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **View the application:**
 
-### `npm run eject`
+   Open [http://localhost:3000](http://localhost:3000) in your browser to see the application running.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Code Overview
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### React Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **`App.tsx`:** The main component of the application.
+  - **State Management:**
+    - `products`: Stores the list of products fetched from the API.
+    - `searchKey`: Stores the user's search input.
+    - `debouncedSearchKey`: Stores the debounced value of the search key to optimize the search performance.
+    - `imageLoading`: Tracks the loading state of each product's image.
+  - **Effects:**
+    - Fetches product data from the API on component mount.
+    - Implements debouncing for the search input.
+  - **Functions:**
+    - `handleSearchChange`: Updates the search key as the user types.
+    - `handleImageLoad`: Updates the image loading state when an image is successfully loaded.
+    - `handleImageError`: Updates the image loading state when an image fails to load.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### CSS Styling
 
-## Learn More
+- **Responsive Design:** The CSS file includes media queries to ensure the application is responsive across different screen sizes.
+- **Loader Spinner:** A custom spinner is included to indicate loading states for images.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## API Details
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Mock Server and Dynamic Data
+
+The data for the product list is fetched from a mock server created using Postman. Here's how the mock server and the dynamic data generation work:
+
+1. **Schema Creation:**
+
+   - In Postman, a schema is defined for the product data. This schema outlines the structure and types of data for each product (e.g., `productId`, `productName`, `productPrice`, `productImage`).
+   - This schema is stored in a variable within a Postman collection, allowing it to be reused across different mock responses.
+
+2. **Dynamic Data Generation:**
+
+   - The mock server is set up to leverage the schema to generate dynamic data on each API request.
+   - Every time the API endpoint is called, the mock server returns a new set of product data based on the predefined schema. This means the product data will change on every page reload or refresh, ensuring a fresh dataset each time.
+
+3. **Mock API Example:**
+   - An example response is created in Postman that uses the schema to generate the mock data dynamically.
+   - This setup simulates a real-world API, providing a realistic environment for front-end development and testing without needing a live backend.
+
+### API Endpoint
+
+- **Endpoint:** `https://1e0ba872-6030-405d-9881-8b7455d2ebdf.mock.pstmn.io/api/v1/products`
+- **Method:** `GET`
+- **Response:** A list of products with dynamic content on each request.
+
+## Future Scope
+
+Here are some potential enhancements that could be made to this project:
+
+1. **Pagination:** Add pagination to manage large sets of products more efficiently.
+2. **Improved Error Handling:** Implement more sophisticated error handling for network requests and display user-friendly messages.
+3. **Lazy Loading:** Implement lazy loading for images to optimize performance and reduce the initial load time.
+4. **Enhanced Search:** Add advanced search capabilities, such as filtering by price range or product categories.
+5. **Unit Tests:** Add unit tests for components and utility functions to ensure code reliability.
+6. **State Management:** Integrate a global state management solution like Redux for better scalability and manageability.
